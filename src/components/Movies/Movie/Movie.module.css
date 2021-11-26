@@ -1,0 +1,25 @@
+.movie{
+    min-height: 300px;
+    min-width: 200px;
+    margin: 15px 30px 0 30px;
+}
+.poster{
+    max-width: 200px;
+}
+.title{
+    max-width: 200px;
+    text-align: center;
+}
+.link{
+    width: min-content;
+    text-decoration: none;
+    color: inherit;
+}
+
+.link:hover{
+    text-decoration: none;
+    color: inherit;
+}
+.container{
+    width: fit-content;
+}

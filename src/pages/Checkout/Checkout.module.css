@@ -1,0 +1,9 @@
+.screen{
+    width: 40rem;
+    height: 2rem;
+    background-color: #c4c4c4;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border-radius: 0.25rem;
+}

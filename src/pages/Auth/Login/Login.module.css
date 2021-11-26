@@ -1,0 +1,45 @@
+.backgroundContainer{
+    background-color: #052C65;
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+.pictureContainer{
+    height: 830px;
+    min-width: 800px;
+    background-color: white;
+    display: flex;
+    background-size:auto;
+    border-radius: 10px 0 0 10px;
+
+}
+.formContainer{
+    width: 400px;
+    min-width: 400px;
+    background-color: #7193A3;
+    border-radius: 0 10px 10px 0;
+}
+
+.logoContainer{
+    margin: 60px 15px 200px 15px;
+}
+
+.formLogin{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #EEEFF2;
+    border-radius: 4px;
+}
+.loginFooter{
+    background-color: #F9A826;
+    border-radius: 0px 0px 4px 4px;
+    width: 100%;
+}
+h2{
+    color: #004CC5;
+}
+h3{
+    color: #000000;
+}
