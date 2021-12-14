@@ -14,20 +14,30 @@ export default function MovieCard (props){
     setGenres(props.genres)
   })
 
-  const exportToPDF = () => {
+  const exportMovieToPDF = () => {
     const doc = new jsPDF();
+    let y = 15
     doc.setFontSize(36);
-    doc.text(movie.title, 10, 15);
+    const title = doc.splitTextToSize(movie.title, 180)
+    title.forEach((line) => {
+      doc.text(line, 10, y + 5)
+      y = y + 15
+    })
     doc.setFontSize(16);
-    doc.text(`Genres: `, 75, 40)
-    doc.text(`Release date: ${movie.release_date}`, 75, 50)
-    doc.text(`Runtime: ${movie.runtime} min`, 75, 60)
-    doc.text(`Rating: ${movie.vote_average}, ${movie.vote_count} votes`, 75, 70)
-    doc.addImage(`https://image.tmdb.org/t/p/original${movie.poster_path}`, 'jpg', 10, 20, 60, 90)
-    const overview = doc.splitTextToSize(movie.overview, 180);
-    doc.text(overview, 10, 120);
+    let genreStr = '|'
+    genres.forEach((genre)=>{
+      genreStr += ` ${genre.name} |`
+    })
+    doc.text(genreStr, 75, y + 25)
+    doc.text(`Release date: ${movie.release_date}`, 75, y + 35)
+    doc.text(`Runtime: ${movie.runtime} min`, 75, y + 45)
+    doc.text(`Rating: ${movie.vote_average}, ${movie.vote_count} votes`, 75, y + 55)
+    doc.addImage(`https://image.tmdb.org/t/p/original${movie.poster_path}`, 'jpg', 10, y, 60, 90)
+    const overview = doc.splitTextToSize(movie.overview, 180)
+    overview.forEach((text) => console.log(text))
+    doc.text(overview, 10, 105 + y)
     console.log(movie)
-    doc.save(`${movie.title}.pdf`);
+    doc.save(`${movie.title}.pdf`)
   }
 
   return (
@@ -38,7 +48,7 @@ export default function MovieCard (props){
       <div className="ml-4 mr-4 mt-4">
         <div className=" d-flex flex-row justify-content-between ">
           <h2>{movie.title}</h2>
-          <Button variant="secondary" onClick={exportToPDF}>Export to PDF</Button>
+          <Button variant="secondary" onClick={exportMovieToPDF}>Export to PDF</Button>
         </div>
         <p>
           {movie.runtime} min  
@@ -50,7 +60,6 @@ export default function MovieCard (props){
         </p>
         <p>
           {movie.overview}
-          {console.log(movie)}
         </p>
         <p>
           Release date: {movie.release_date}
