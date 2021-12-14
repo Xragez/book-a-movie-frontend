@@ -40,6 +40,7 @@ function Movies(props) {
     slidesToScroll: 5
   };
 
+  
   return (
     <div className="m-3">
       <h3 className={styles.title}>{props.title}</h3>
