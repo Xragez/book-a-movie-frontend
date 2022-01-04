@@ -7,7 +7,8 @@ export default function NotFound() {
       <img 
       src={notfoundImg}
       className="img-fluid m-5"
-      style = {{width: "50rem"}} />
+      style = {{width: "50rem"}}
+      alt="Not found"/>
       <h2>404 not found</h2>
     </div>
 

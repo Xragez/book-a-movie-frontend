@@ -13,9 +13,8 @@ function Movies(props) {
 
   const optionsMovies = {
     method: 'GET',
-    url: `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}` +
-      `&language=en-US&sort_by=${props.sortBy}&include_adult=false&include_video=false` + 
-      `${props.vote_count ? `&vote_count.gte=${props.vote_count}` : ''}`
+    url: `https://api.themoviedb.org/3/movie/${props.sortBy}?api_key=${API_KEY}` +
+      `&language=en-US&include_video=false`
   };
   
   const fetchMovies = async () => {   

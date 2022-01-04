@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import styles from './Seats.module.css';
-import axios from "axios";
-import { Link } from 'react-router-dom';
 import Seat from './Seat/Seat';
 
 const API_KEY = process.env.REACT_APP_API_KEY
@@ -39,9 +36,9 @@ function Seats(props){
           {row.map(seat =>
             <div className="mr-2">
               {takenSeats && isSeatAvailable(seat) ?
-              <Seat id ={seat} state="available"></Seat>
+              <Seat id ={seat} state="available"/>
               :
-              <Seat id ={seat} state="unavailable"></Seat>}
+              <Seat id ={seat} state="unavailable"/>}
             </div>
           )}
         </div>

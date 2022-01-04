@@ -9,7 +9,7 @@ export default function MovieCardBasic (props){
 
   useEffect(() => {
     setMovie(props.movie)
-  })
+  }, [props.movie])
 
   return (
     
@@ -17,7 +17,7 @@ export default function MovieCardBasic (props){
       <Link to={`/movie/${movie.id}`}>
         <div className="d-flex flex-row m-3" >
           <div className="flex-column">
-              <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} className={styles.poster}/>
+              <img alt="poster" src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} className={styles.poster}/>
           </div>
           <div className="m-4">
               <h4>{movie.title}</h4>

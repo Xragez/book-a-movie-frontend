@@ -4,20 +4,11 @@
     min-width: 100vw;
 }
 
-.pictureContainer{
-    height: 830px;
-    min-width: 800px;
-    background-color: white;
-    display: flex;
-    background-size:auto;
-    border-radius: 10px 0 0 10px;
-
-}
 .formContainer{
     width: 400px;
     min-width: 400px;
     background-color: #7193A3;
-    border-radius: 0 10px 10px 0;
+    border-radius: 10px;
 }
 
 .logoContainer{

@@ -1,22 +1,24 @@
 import { useContext } from 'react'
 import AuthContext from '../context/authContext'
+import jwt_decode from 'jwt-decode'
 
 
-/**
- * hook for change state of authentication
- * 
- * @returns [auth, setAuth] authentication
- */
 function useAuth() {
   const authContext = useContext(AuthContext)
 
   const auth = authContext.user
 
-  const setAuth = (user) => {
-    if (user) {
+  const setAuth = (token) => {
+    if (token) {
       // login
+      const decoded = jwt_decode(token)
+      const user = {
+        token: token,
+        userId: decoded.userId,
+        roles: decoded.roles
+      }
       authContext.login(user)
-      window.localStorage.setItem('token', JSON.stringify(user))
+      window.localStorage.setItem('user', JSON.stringify(user))
     } else {
       // logout
       authContext.logout()

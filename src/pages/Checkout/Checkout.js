@@ -23,7 +23,7 @@ export default function Checkout (){
 
   const fetchShowTime = async () => {
     try {
-      let res = await apiaxios.get(`/api/show_times/${showtimeid}`, {
+      let res = await apiaxios.get(`/user/showtime/${showtimeid}`, {
           headers: {
             Authorization: `Bearer ${auth.token}`
           }

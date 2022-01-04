@@ -15,7 +15,7 @@ export default function Tickets (props){
 
   const fetchShowTimes = async () => {
     try {
-      let res = await axios.get(`/api/show_times?movieId=${props.movieId}`, {
+      let res = await axios.get(`/api/showtime?movieId=${props.movieId}`, {
           headers: {
             Authorization: `Bearer ${auth.token}`
           }
@@ -29,9 +29,8 @@ export default function Tickets (props){
   const filterByDate = async () => {
     let newShowTimes = []
     showTimes.map(showTime => 
-      date.toISOString().slice(0, 10) == showTime.date.slice(0, 10) ? newShowTimes = [...newShowTimes, showTime] : ''
+      date.toISOString().slice(0, 10) === showTime.date.slice(0, 10) ? newShowTimes = [...newShowTimes, showTime] : ''
       )
-    //console.log(newShowTimes)      
   }
 
   const onDateChange = (date) => {
@@ -42,7 +41,7 @@ export default function Tickets (props){
 
   useEffect(() => {
     fetchShowTimes()
-  }, [date])
+  }, [date, fetchShowTimes()])
 
   return (
     <div className={`d-flex flex-row card m-3 p-3 ${styles.card}`}>

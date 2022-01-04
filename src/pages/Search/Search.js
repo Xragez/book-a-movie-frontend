@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import styles from './Search.module.css';
 import axios from "axios";
 import Header from '../../components/Header/Header';
 import MovieCardBasic from '../../components/Movies/MovieCardBasic/MovieCardBasic';
@@ -20,7 +19,6 @@ export default function MovieDetails (){
 const fetchMovies = async () => {   
     axios.request(options).then(function (response) {
         setMovies(response.data.results);
-        console.log(response)
     }).catch(function (error) {
         console.error(error);
     });
@@ -28,7 +26,7 @@ const fetchMovies = async () => {
 
 useEffect(() => {
   fetchMovies()
-}, [q])
+}, [q, fetchMovies()])
 
     return (
       <div>

@@ -1,17 +1,17 @@
 import React, { useState } from 'react'
 import styles from './Register.module.css'
 import logo from '../../../assets/images/logo_black.svg'
-import Button from '../../../components/fundamental/actions/button/Button'
+import {Button} from 'react-bootstrap'
 import useAuth from '../../../hooks/useAuth'
 import { useHistory } from 'react-router'
 import axios from '../../../axios'
+import {Link} from "react-router-dom";
 
 
 export default function Register() {
   const [auth, setAuth] = useAuth()
   const history = useHistory()
 
-  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confPassword, setConfPassword] = useState('')
   const [userName, setUserName] = useState('')
@@ -19,12 +19,11 @@ export default function Register() {
   const submit = async e => {
     e.preventDefault()
 
-    if(password != confPassword){
+    if(password !== confPassword){
       console.log("Error, different passwords")
     }
     try {
-      let res = await axios.post('/register', {
-        email: email,
+      let res = await axios.post('auth/register', {
         password: password,
         username: userName
       })
@@ -39,21 +38,39 @@ export default function Register() {
 
   return (
     <div className={styles.backgroundContainer}>
-      <div className={`${styles.loginContainer} container d-flex flex-row p-4`}>
-        <div className={`${styles.formContainer} container flex-column`}>
+      <div className={`container d-flex flex-row p-4`}>
+        <div className={`${styles.formContainer} container flex-column p-4`}>
           <div className={`${styles.logoContainer}`} >
-            <img 
-              src={logo}
-              className={`${logo} img-fluid `} />
+            <Link to="/">
+              <img
+                  src={logo}
+                  className={`${logo} img-fluid `}
+                  alt="logo"
+              />
+            </Link>
           </div>
           <div className={`${styles.formLogin} align-self-end`}>
             <h2 className="mt-3">Create Account</h2>
             <form onSubmit={submit}>
             <div className="justify-content-center">
-              <input type="text" className="form-control mt-3" onChange={(e) => setUserName(e.target.value)} placeholder="User Name"></input>
-              <input type="text" className="form-control mt-3" onChange={(e) => setEmail(e.target.value)} placeholder="Email"></input>
-              <input type="password" className="form-control mt-3" onChange={(e) => setPassword(e.target.value)} placeholder="Password"></input>
-              <input type="password" className="form-control mt-3 mb-3" onChange={(e) => setConfPassword(e.target.value)} placeholder="Password"></input>
+              <input
+                  type="text"
+                  className="form-control mt-3"
+                  onChange={(e) => setUserName(e.target.value)}
+                  placeholder="User Name"
+              />
+              <input
+                  type="password"
+                  className="form-control mt-3"
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Password"
+              />
+              <input
+                  type="password"
+                  className="form-control mt-3 mb-3"
+                  onChange={(e) => setConfPassword(e.target.value)}
+                  placeholder="Password"
+              />
               <div className="d-flex mb-3 justify-content-center">
               <Button>Register</Button>
               </div>

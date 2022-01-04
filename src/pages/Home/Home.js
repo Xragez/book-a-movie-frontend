@@ -6,8 +6,8 @@ export default function Home (){
     return (
         <div>
         <Header/>
-        <Movies sortBy="popularity.desc" title="Most Popular"/>
-        <Movies sortBy="vote_average.desc" title="Top Rated" vote_count="1000"/>
+        <Movies sortBy="now_playing" title="Now playing"/>
+        <Movies sortBy="upcoming" title="Upcoming"/>
         </div>
     ); 
 }

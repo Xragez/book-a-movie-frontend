@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './Account.module.css';
 import useAuth from '../../../hooks/useAuth'
 
@@ -20,7 +20,7 @@ function Account(){
         {auth ?
             <div className="d-flex flex-row">
                 <div className={`${styles.account} ml-2 mr-2`}>
-                    <a href="#" className="btn btn-secondary" onClick={logout}>Log out</a>
+                    <a href="/account" className="btn btn-secondary" onClick={logout}>Log out</a>
                 </div> 
                 <div className={`${styles.account} ml-2 mr-2`}>
                     <a href="/login" className="btn btn-dark mr-4">My Account</a>

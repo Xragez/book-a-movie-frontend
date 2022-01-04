@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react'
-import logo from './logo.svg';
 import Login from './pages/Auth/Login/Login';
 import Home from './pages/Home/Home';
+import Showtimes from './pages/Showtimes/Showtimes'
 import MovieDetails from './pages/MovieDetails/MovieDetails'
 import Search from './pages/Search/Search'
 import NotFound from './pages/NotFound/NotFound'
@@ -35,6 +35,7 @@ function App() {
             <Route path="/register" component={Register}/>
             <Route path="/home" component={Home}/>
             <Route path="/movie/:id" component={MovieDetails}/>
+            <Route path="/showtimes" component={Showtimes}/>
             <Route path='/search/:q?' component={Search} />
             <Route path='/checkout/:movieid/:showtimeid' component={Checkout}/>
             <Route component={NotFound} />

@@ -12,7 +12,7 @@ export default function MovieCard (props){
   useEffect(() => {
     setMovie(props.movie)
     setGenres(props.genres)
-  })
+  }, [props.movie, props.genres])
 
   const exportMovieToPDF = () => {
     const doc = new jsPDF();
