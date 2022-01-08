@@ -48,7 +48,7 @@ export default function Checkout (){
     fetchShowTime()
   }, [])
 
-  if (!auth) history.push('/home')
+  //if (!auth) history.push('/home')
 
   return (
     <div>

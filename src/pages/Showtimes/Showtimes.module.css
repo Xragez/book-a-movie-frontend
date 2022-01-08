@@ -4,10 +4,12 @@
     background-attachment: fixed;
     height: 100vh;
     overflow: auto;
-    align-content: center;
-    justify-content: center;
 }
-
+.showtimes{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
 .dates{
     width: 100%;
 }

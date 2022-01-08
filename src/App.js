@@ -9,7 +9,6 @@ import AuthContext from './context/authContext'
 import { reducer, initialState } from './reducer'
 import './App.css';
 import {
-  BrowserRouter as Router, 
   Switch,
   Route,
   Redirect
@@ -28,19 +27,17 @@ function App() {
       login: (user) => dispatch({ type: 'login', user: user }),
       logout: () => dispatch({ type: 'logout' })
       }}>
-        <Router>
-          <Switch>
-            <Redirect exact from="/" to="/home" />
-            <Route path="/login" component={Login}/>
-            <Route path="/register" component={Register}/>
-            <Route path="/home" component={Home}/>
-            <Route path="/movie/:id" component={MovieDetails}/>
-            <Route path="/showtimes" component={Showtimes}/>
-            <Route path='/search/:q?' component={Search} />
-            <Route path='/checkout/:movieid/:showtimeid' component={Checkout}/>
-            <Route component={NotFound} />
-          </Switch>
-        </Router>
+      <Switch>
+        <Redirect exact from="/" to="/home" />
+        <Route path="/login" component={Login}/>
+        <Route path="/register" component={Register}/>
+        <Route path="/home" component={Home}/>
+        <Route path="/movie/:id" component={MovieDetails}/>
+        <Route path="/showtimes" component={Showtimes}/>
+        <Route path='/search/:q?' component={Search} />
+        <Route path='/checkout/:movieid/:showtimeid' component={Checkout}/>
+        <Route component={NotFound} />
+      </Switch>
       </AuthContext.Provider>
     </div>
   );

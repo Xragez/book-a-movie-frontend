@@ -22,7 +22,7 @@ function useAuth() {
     } else {
       // logout
       authContext.logout()
-      window.localStorage.removeItem('token')
+      window.localStorage.removeItem('user')
     }
   }
 

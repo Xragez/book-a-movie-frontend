@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Account.module.css';
 import useAuth from '../../../hooks/useAuth'
+import {Button, DropdownButton, Dropdown} from "react-bootstrap";
 
 
 function Account(){
@@ -20,15 +21,15 @@ function Account(){
         {auth ?
             <div className="d-flex flex-row">
                 <div className={`${styles.account} ml-2 mr-2`}>
-                    <a href="/account" className="btn btn-secondary" onClick={logout}>Log out</a>
-                </div> 
-                <div className={`${styles.account} ml-2 mr-2`}>
-                    <a href="/login" className="btn btn-dark mr-4">My Account</a>
+                    <DropdownButton id="dropdown-basic-button" title="Account" variant="dark">
+                        <Dropdown.Item>My tickets</Dropdown.Item>
+                        <Dropdown.Item onClick={logout}>Log out</Dropdown.Item>
+                    </DropdownButton>
                 </div> 
             </div>
          : 
             <div className={`${styles.account}`}>
-                <a href="/login" className="btn btn-dark mr-4">Sign in</a>
+                <Button href="/login" variant="dark">Log in</Button>
             </div>
             
         }

@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Header.module.css';
 import Searchbar from './Searchbar/Searchbar';
-import { ReactComponent as Logo} from '../../assets/images/logo_white.svg'
+import {ReactComponent as Logo} from '../../assets/images/logo_white.svg'
 import Account from './Account/Account';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';

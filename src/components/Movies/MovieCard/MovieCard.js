@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import styles from './MovieCard.module.css';
 import { jsPDF } from "jspdf";
-import {Button, Card} from "react-bootstrap";
+import {Button, Card, Form, Modal} from "react-bootstrap";
+import {useHistory} from "react-router";
+import axios from "../../../axios";
 
 
 export default function MovieCard (props){
 
   const [movie, setMovie] = useState([])
   const [genres, setGenres] = useState([])
+  const [showModal, setShowModal] = useState(false)
+  const movieId = props.movieId
+  const handleClose = () => setShowModal(false)
+  const handleShow = () => setShowModal(true)
 
   useEffect(() => {
     setMovie(props.movie)
@@ -40,6 +46,73 @@ export default function MovieCard (props){
     doc.save(`${movie.title}.pdf`)
   }
 
+  const AddShowTimeModal = (props) => {
+    const show = props.show
+    const handleClose = props.onHide
+    const [date, setDate] = useState()
+    const [time, setTime] = useState()
+
+    const history = useHistory()
+
+    const postShowtime = async () => {
+        try {
+          let res = await axios.post(`admin/showtime`,{
+                movieId: movieId,
+                movieTitle: movie.title,
+                date: date,
+                time: time
+              })
+        } catch (ex) {
+          console.log('axios error', ex)
+        }
+    }
+
+    const onSubmit = () => {
+      postShowtime().then(history.push('/showtimes'))
+    }
+
+    return (
+        <Modal show={show}
+               onHide={handleClose}
+               backdrop="static"
+               keyboard={false}
+               centered
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>Add ShowTime</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form>
+              <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label>Date</Form.Label>
+                <Form.Control
+                    type="date"
+                    placeholder="Date"
+                    onChange={(e) =>{setDate(e.target.value)}}
+                />
+              </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>Hour</Form.Label>
+                <Form.Control
+                    type="time"
+                    placeholder="Hour"
+                    onChange={(e) =>{setTime(e.target.value)}}
+                />
+              </Form.Group>
+            </Form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="dark" onClick={onSubmit}>
+              Add
+            </Button>
+          </Modal.Footer>
+        </Modal>
+    )
+  }
+
   return (
     <Card className={`d-flex flex-row m-3 p-3 ${styles.card}`}>
       <div className="flex-column">
@@ -48,7 +121,10 @@ export default function MovieCard (props){
       <div className="ml-4 mr-4 mt-4">
         <div className=" d-flex flex-row justify-content-between ">
           <h2>{movie.title}</h2>
-          <Button variant="secondary" onClick={exportMovieToPDF}>Export to PDF</Button>
+        </div>
+        <div className="mb-2 mt-2">
+          <Button variant="dark" onClick={exportMovieToPDF} className="p-2 mr-2">Export to PDF</Button>
+          <Button variant="dark" onClick={handleShow} className="p-2 mr-2">Add ShowTime</Button>
         </div>
         <p>
           {movie.runtime} min  
@@ -68,6 +144,7 @@ export default function MovieCard (props){
           Rating: {movie.vote_average}/10 {movie.vote_count} votes
         </p>
       </div>
+      <AddShowTimeModal show={showModal} onHide={handleClose}/>
     </Card>
   ); 
 }

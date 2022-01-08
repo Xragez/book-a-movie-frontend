@@ -38,7 +38,7 @@ export default function MovieDetails (){
           style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`
           }}>
           <Header/>
-          <MovieCard movie={movie} genres={genres}/>
+          <MovieCard movieId={id} movie={movie} genres={genres}/>
           <Tickets movieId={id}/>
         </div>
     ); 
