@@ -13,7 +13,8 @@ function Searchbar(props){
     }
 
     const onSearch = () =>{
-        history.push(`/search/${query}`)
+        if(query.length !== 0)
+            history.push(`/search/${query}`)
     }
 
     return (
@@ -25,9 +26,12 @@ function Searchbar(props){
                 type="text"
                 placeholder="Search"
             />
-            <Button variant="dark" onClick={onSearch}>
-                Search
-            </Button>
+            <div className="ml-2">
+                <Button variant="dark" onClick={onSearch}>
+                    Search
+                </Button>
+            </div>
+
         </div>
     );
 }

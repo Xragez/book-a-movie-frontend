@@ -10,5 +10,5 @@ export const reducer = (state, action) => {
 }
 
 export const initialState = {
-  user: JSON.parse(window.localStorage.getItem('token')) ?? null
+  user: JSON.parse(window.localStorage.getItem('user')) ?? null
 }

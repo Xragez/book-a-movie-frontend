@@ -1,6 +1,8 @@
-import axios from "../../axios";
-import {useEffect, useState} from "react";
-import ShowTimeMovie from "./ShowTimeMovie";
+import axios from "../../axios"
+import {useEffect, useState} from "react"
+import ShowTimeMovie from "./ShowTimeMovie"
+import styles from './ShowTimeMovies.module.css'
+
 
 function ShowTimeMovies(props) {
     const date = props.date
@@ -21,7 +23,7 @@ function ShowTimeMovies(props) {
         fetchData()
     }, [date])
     return (
-        <div style={{display: "flex", flexDirection: "column", width: "100%", alignItems: "center"}}>
+        <div className={styles.showtimemovie}>
             {showTimes.map(showTime => (
                 <ShowTimeMovie showTime={showTime}/>
             ))}

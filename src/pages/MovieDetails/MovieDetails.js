@@ -5,12 +5,13 @@ import axios from "axios";
 import Header from '../../components/Header/Header';
 import MovieCard from '../../components/Movies/MovieCard/MovieCard';
 import Tickets from '../../components/Tickets/Tickets';
+import NotFound from "../NotFound/NotFound";
 
 const API_KEY = process.env.REACT_APP_API_KEY
 
 export default function MovieDetails (){
 
-  const [movie, setMovie] = useState([])
+  const [movie, setMovie] = useState('')
   const [genres, setGenres] = useState([])
   const { id } = useParams()
 
@@ -21,10 +22,12 @@ export default function MovieDetails (){
 
   const fetchMovie = async () => {   
       axios.request(options).then(function (response) {
+          console.log(response)
           setMovie(response.data);
           setGenres(response.data.genres)
       }).catch(function (error) {
-          console.error(error);
+          console.error(error)
+          return <NotFound/>
       });
   }
 
@@ -38,8 +41,13 @@ export default function MovieDetails (){
           style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`
           }}>
           <Header/>
-          <MovieCard movieId={id} movie={movie} genres={genres}/>
-          <Tickets movieId={id}/>
+            { movie !== '' ?
+            <>
+                <MovieCard movieId={id} movie={movie} genres={genres}/>
+                <Tickets movieId={id}/>
+            </> : ''
+            }
+
         </div>
     ); 
 }

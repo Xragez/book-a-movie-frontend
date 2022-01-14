@@ -68,7 +68,7 @@ export default function MovieCard (props){
     }
 
     const onSubmit = () => {
-      postShowtime().then(history.push('/showtimes'))
+      postShowtime().then(window.location.reload(false))
     }
 
     return (

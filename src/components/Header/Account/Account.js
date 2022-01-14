@@ -28,8 +28,11 @@ function Account(){
                 </div> 
             </div>
          : 
-            <div className={`${styles.account}`}>
-                <Button href="/login" variant="dark">Log in</Button>
+            <div className={`${styles.account} ml-2 mr-2 d-flex`}>
+                <div className=" mr-2">
+                    <Button href="/login" variant="dark">Log in</Button>
+                </div>
+                <Button href="/register" variant="dark">Sign up</Button>
             </div>
             
         }

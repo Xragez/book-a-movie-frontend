@@ -17,10 +17,10 @@
 }
 
 .active{
-    background-color: orange;
+    background-color: #EDA12A;
 }
 .active:hover{
-    background-color: orange;
+    background-color: #EDA12A;
 }
 h4{
     width: fit-content;

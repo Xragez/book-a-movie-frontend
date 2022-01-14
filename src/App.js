@@ -15,10 +15,20 @@ import {
 } from "react-router-dom";
 import Register from './pages/Auth/Register/Register';
 import Checkout from './pages/Checkout/Checkout';
+import Header from "./components/Header/Header";
 
 function App() {
 
   const [state, dispatch] = useReducer(reducer, initialState)
+
+  const NotFoundPage = () => {
+      return (
+          <>
+              <Header/>
+              <NotFound/>
+          </>
+      )
+  }
 
   return (
     <div className="App">
@@ -36,7 +46,7 @@ function App() {
         <Route path="/showtimes" component={Showtimes}/>
         <Route path='/search/:q?' component={Search} />
         <Route path='/checkout/:movieid/:showtimeid' component={Checkout}/>
-        <Route component={NotFound} />
+        <Route component={NotFoundPage} />
       </Switch>
       </AuthContext.Provider>
     </div>
