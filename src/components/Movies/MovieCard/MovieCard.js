@@ -4,6 +4,7 @@ import { jsPDF } from "jspdf";
 import {Button, Card, Form, Modal} from "react-bootstrap";
 import {useHistory} from "react-router";
 import axios from "../../../axios";
+import useAuth from "../../../hooks/useAuth";
 
 
 export default function MovieCard (props){
@@ -11,6 +12,7 @@ export default function MovieCard (props){
   const [movie, setMovie] = useState([])
   const [genres, setGenres] = useState([])
   const [showModal, setShowModal] = useState(false)
+  const [auth, setAuth] = useAuth()
   const movieId = props.movieId
   const handleClose = () => setShowModal(false)
   const handleShow = () => setShowModal(true)
@@ -51,6 +53,7 @@ export default function MovieCard (props){
     const handleClose = props.onHide
     const [date, setDate] = useState()
     const [time, setTime] = useState()
+    const [auth, setAuth] = useAuth()
 
     const history = useHistory()
 
@@ -61,7 +64,11 @@ export default function MovieCard (props){
                 movieTitle: movie.title,
                 date: date,
                 time: time
-              })
+              },{
+            headers: {
+              Authorization: `Bearer ${auth.token}`
+            }
+          })
         } catch (ex) {
           console.log('axios error', ex)
         }
@@ -82,7 +89,7 @@ export default function MovieCard (props){
             <Modal.Title>Add ShowTime</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Form>
+            <Form onSubmit={onSubmit}>
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Date</Form.Label>
                 <Form.Control
@@ -124,7 +131,10 @@ export default function MovieCard (props){
         </div>
         <div className="mb-2 mt-2">
           <Button variant="dark" onClick={exportMovieToPDF} className="p-2 mr-2">Export to PDF</Button>
-          <Button variant="dark" onClick={handleShow} className="p-2 mr-2">Add ShowTime</Button>
+          {auth && auth.roles.includes('ROLE_ADMIN') ?
+              <Button variant="dark" onClick={handleShow} className="p-2 mr-2">Add ShowTime</Button>
+              : ''
+          }
         </div>
         <p>
           {movie.runtime} min  

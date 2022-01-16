@@ -52,7 +52,7 @@ export default function Login() {
                     </div>
                     <div className={`${styles.formLogin} align-self-end`}>
                         <h2 className="mt-4">Log in!</h2>
-                        <Form className="pt-3 pb-3">
+                        <Form className={`pt-3 pb-3 ${styles.form}`}>
                             <Form.Group className="mb-3" controlId="formBasicEmail">
                                 <Form.Label>User name</Form.Label>
                                 <Form.Control

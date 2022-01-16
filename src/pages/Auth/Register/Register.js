@@ -38,6 +38,8 @@ export default function Register() {
   const [password, setPassword] = useState('')
   const [confPassword, setConfPassword] = useState('')
   const [userName, setUserName] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [surname, setSurname] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
 
   const [showModal, setShowModal] = useState(false)
@@ -57,7 +59,9 @@ export default function Register() {
       try {
         let res = await axios.post('auth/register', {
           password: password,
-          username: userName
+          username: userName,
+          firstName: firstName,
+          surname: surname
         })
         handleShow()
       }catch (ex) {
@@ -84,8 +88,22 @@ export default function Register() {
           <div className={`${styles.formLogin} align-self-end`}>
             <h2 className="mt-3">Create Account</h2>
             <div className="justify-content-center">
-              <Form className="pt-3 pb-3">
-                <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form className={`pt-3 pb-3 ${styles.form}`} >
+                <Form.Group className="mb-3" controlId="formBasicUserData">
+                  <Form.Label>First name</Form.Label>
+                  <Form.Control
+                      required
+                      type="text"
+                      placeholder="First name"
+                      onChange={(e) => setFirstName(e.target.value)}
+                  />
+                  <Form.Label>Surname</Form.Label>
+                  <Form.Control
+                      required
+                      type="text"
+                      placeholder="Surname"
+                      onChange={(e) => setSurname(e.target.value)}
+                  />
                   <Form.Label>User name</Form.Label>
                   <Form.Control
                       required

@@ -1,15 +1,11 @@
-
 .background{
     background-size: cover;
     background-attachment: fixed;
     height: 100vh;
     overflow: auto;
 }
-.showtimes{
+.tickets{
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-.dates{
-    width: 100%;
 }

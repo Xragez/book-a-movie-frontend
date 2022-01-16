@@ -14,6 +14,7 @@ export default function Checkout() {
     const [showTime, setShowTime] = useState([])
     const [takenSeats, setTakenSeats] = useState()
     const [selectedSeats, setSelectedSeats] = useState([])
+    const [disabled, setDisabled] = useState(true)
     const [auth, setAuth] = useAuth()
     const history = useHistory()
 
@@ -46,26 +47,28 @@ export default function Checkout() {
         }
     }
 
-    const addSeat = (seatId) => {
-        if (selectedSeats.indexOf(seatId) <= -1) {
-            setSelectedSeats([...selectedSeats, seatId])
-        }
-    }
-
     const addTicket = async () => {
         try {
             let res = await apiaxios.post(`/user/tickets`, {
-                headers: {
-                    Authorization: `Bearer ${auth.token}`
-                },
                 userId: auth.userId,
                 seats: selectedSeats,
                 showTimeId: showtimeid
+            },{
+                headers: {
+                    Authorization: `Bearer ${auth.token}`
+                }
             })
             setTakenSeats(res.data.map(seat => seat.name))
             console.log(takenSeats)
         } catch (ex) {
             console.log('axios error', ex)
+        }
+    }
+
+    const addSeat = (seatId) => {
+        if (selectedSeats.indexOf(seatId) <= -1) {
+            setSelectedSeats([...selectedSeats, seatId])
+            setDisabled(false)
         }
     }
 
@@ -76,12 +79,15 @@ export default function Checkout() {
             array.splice(index, 1)
             setSelectedSeats(array)
         }
+        if (selectedSeats.length === 0){
+            setDisabled(true)
+        }
     }
 
     const onClick = () => {
         console.log(selectedSeats)
         if(selectedSeats.length !== 0){
-            addTicket().then(history.push('/home'))
+            addTicket().then(history.push('/my_tickets'))
         }
     }
 
@@ -108,7 +114,13 @@ export default function Checkout() {
                         : ""
                     }
                 </div>
-                <Button variant="dark" className="mt-3" onClick={onClick}>Book seats</Button>
+                <Button
+                    variant="dark"
+                    className="mt-3"
+                    disabled={disabled}
+                    onClick={onClick}>
+                    Book seats
+                </Button>
 
             </div>
         </div>

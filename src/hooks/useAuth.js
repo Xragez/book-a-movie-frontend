@@ -14,6 +14,9 @@ function useAuth() {
       const decoded = jwt_decode(token)
       const user = {
         token: token,
+        firstName: decoded.firstName,
+        surname: decoded.surname,
+        username: decoded.sub,
         userId: decoded.userId,
         roles: decoded.roles
       }

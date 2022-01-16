@@ -1,11 +1,11 @@
-import React from 'react';
-import styles from './Header.module.css';
-import Searchbar from './Searchbar/Searchbar';
+import React from 'react'
+import styles from './Header.module.css'
+import Searchbar from './Searchbar/Searchbar'
 import {ReactComponent as Logo} from '../../assets/images/logo_white.svg'
-import Account from './Account/Account';
-import { Link } from 'react-router-dom';
-import { useHistory } from 'react-router';
-import {Button} from "react-bootstrap";
+import Account from './Account/Account'
+import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router'
+import {Button} from "react-bootstrap"
 
 function Header(props){
     const history = useHistory()

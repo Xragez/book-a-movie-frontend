@@ -37,7 +37,7 @@ const SearchMovieModal = (props) => {
                 <Modal.Title>Add ShowTime</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <Form>
+                <Form onSubmit={onSearch}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Find movie</Form.Label>
                         <Form.Control
@@ -86,7 +86,10 @@ export default function Showtimes () {
             <div className={styles.showtimes}>
                 <ShowtimeCalendar datesArray={datesArray} activeId={activeId} setActiveId={setActiveId} />
                 <ShowTimeMovies date={activeDate}/>
-                <Button variant="dark" onClick={handleShow}>Add Showtime</Button>
+                {auth && auth.roles.includes('ROLE_ADMIN') ?
+                    <Button variant="dark" onClick={handleShow}>Add Showtime</Button>
+                    : ''
+                }
             </div>
             <SearchMovieModal show={showModal} onHide={handleClose}/>
         </div>

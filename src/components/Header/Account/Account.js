@@ -21,8 +21,12 @@ function Account(){
         {auth ?
             <div className="d-flex flex-row">
                 <div className={`${styles.account} ml-2 mr-2`}>
-                    <DropdownButton id="dropdown-basic-button" title="Account" variant="dark">
-                        <Dropdown.Item>My tickets</Dropdown.Item>
+                    <DropdownButton id="dropdown-basic-button" title={auth.username} variant="dark">
+                        <Dropdown.Item href="/my_tickets">My tickets</Dropdown.Item>
+                        {auth && auth.roles.includes('ROLE_ADMIN') ?
+                            <Dropdown.Item href="/find_tickets">Search tickets</Dropdown.Item>
+                            : ''
+                        }
                         <Dropdown.Item onClick={logout}>Log out</Dropdown.Item>
                     </DropdownButton>
                 </div> 

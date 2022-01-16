@@ -16,6 +16,8 @@ import {
 import Register from './pages/Auth/Register/Register';
 import Checkout from './pages/Checkout/Checkout';
 import Header from "./components/Header/Header";
+import MyTickets from "./pages/MyTickets/MyTickets";
+import FindTickets from "./pages/FindTickets/FindTickets";
 
 function App() {
 
@@ -46,6 +48,8 @@ function App() {
         <Route path="/showtimes" component={Showtimes}/>
         <Route path='/search/:q?' component={Search} />
         <Route path='/checkout/:movieid/:showtimeid' component={Checkout}/>
+        <Route path='/my_tickets' component={MyTickets}/>
+        <Route path='/find_tickets' component={FindTickets}/>
         <Route component={NotFoundPage} />
       </Switch>
       </AuthContext.Provider>
