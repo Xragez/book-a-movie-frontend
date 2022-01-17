@@ -61,7 +61,7 @@ export default function FindTickets() {
                 <h3>
                     Tickets:
                 </h3>
-                <UserTickets tickets={tickets}/>
+                <UserTickets tickets={tickets} visibleName/>
             </div>
         </div>
     )

@@ -1,9 +1,8 @@
 import {Card} from "react-bootstrap";
-import {Link} from "react-router-dom";
-import HourBadge from "../Showtimes/HourBadge";
 
 function UserTicket(props) {
     const ticket = props.ticket
+    const userData = ticket.userData
     const seats = ticket.seats
     const showTime = ticket.showTime
 
@@ -11,6 +10,11 @@ function UserTicket(props) {
         <div style={{width: "75rem"}}>
             {ticket ?
                 <Card className="mt-3 mb-3 p-3">
+                    {props.visibleName ?
+                        <h4 className="mb-4">
+                            {`${userData.firstName} ${userData.surname}`}
+                        </h4> : ''
+                    }
                     <h4>
                         {showTime.movieTitle}
                     </h4>

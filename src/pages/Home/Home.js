@@ -6,8 +6,8 @@ export default function Home (){
     return (
         <div>
         <Header/>
-        <Movies sortBy="now_playing" title="Now playing"/>
-        <Movies sortBy="upcoming" title="Upcoming"/>
+        <Movies sortBy="popular" title="Popular Movies"/>
+        <Movies sortBy="upcoming" title="Upcoming Movies"/>
         </div>
     ); 
 }

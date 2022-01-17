@@ -14,10 +14,11 @@ function Movies(props) {
   const optionsMovies = {
     method: 'GET',
     url: `https://api.themoviedb.org/3/movie/${props.sortBy}?api_key=${API_KEY}` +
-      `&language=en-US&include_video=false`
+      `&language=en-US`
   };
   
-  const fetchMovies = async () => {   
+  const fetchMovies = async () => {
+    console.log(optionsMovies.url)
     axios.request(optionsMovies).then(function (response) {
       setMovies(response.data.results);
       console.log(response.data.results);

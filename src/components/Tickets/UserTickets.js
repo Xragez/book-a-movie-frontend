@@ -7,7 +7,7 @@ function UserTickets(props) {
     return (
         <div className={styles.tickets}>
             {tickets.map(ticket => (
-                <UserTicket ticket={ticket}/>
+                <UserTicket ticket={ticket} visibleName={props.visibleName}/>
             ))}
         </div>
 
